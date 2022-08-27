@@ -3,6 +3,7 @@ package utils
 import (
 	"bufio"
 	"log"
+	"math/rand"
 	"os"
 	"strings"
 	"time"
@@ -65,4 +66,15 @@ func ReadConfigurationFile() {
 	}
 
 	defer file.Close()
+}
+
+// 随机生成16进制颜色
+func RandomlyGenerateHexadecimalColor() string {
+	rand.Seed(time.Now().UnixNano())
+	var letterRunes = []rune("0123456789ABCDEF")
+	b := make([]rune, 6)
+	for i := range b {
+		b[i] = letterRunes[rand.Intn(len(letterRunes))]
+	}
+	return "#" + string(b)
 }
